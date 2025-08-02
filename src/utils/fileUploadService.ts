@@ -13,7 +13,7 @@ export async function uploadFile(file: File): Promise<{ filename: string }> {
     const formData = new FormData();
     formData.append('file', file);
     
-    const response = await fetch('http://localhost:5000/api/upload', {
+    const response = await fetch(process.env.NEXT_PUBLIC_BACKEND_URL + '/upload', {
       method: 'POST',
       body: formData,
     });
@@ -34,7 +34,9 @@ export async function uploadFile(file: File): Promise<{ filename: string }> {
 
 export async function getFileUrl(filename: string): Promise<string> {
   try {
-    const response = await fetch(`http://localhost:5000/api/upload/${filename}`);
+    const response = await fetch( process.env.NEXT_PUBLIC_BACKEND_URL + `/download/${filename}`, {
+      method: 'GET',
+    });
     if (!response.ok) {
       const errorData = await response.text();
       throw new Error(`File not found: ${errorData}`);

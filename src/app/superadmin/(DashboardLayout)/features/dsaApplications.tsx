@@ -375,7 +375,7 @@ export default function DSAApplications({
   );
 }
 
-export const FileViewer = ({ fileKey }: { fileKey: string }) => {
+const FileViewer = ({ fileKey }: { fileKey: string }) => {
   const [loading, setLoading] = useState(false);
 
   const handleViewFile = async () => {
